@@ -40,6 +40,7 @@ import { TemplatePreviewComponent } from './admin/templates/template-preview/tem
 import { SearchTemplatePipe } from './pipes/search-template.pipe';
 import { Formio, FormioModule, FormioAppConfig } from 'angular-formio';
 import { SubmissionsComponent } from './admin/submissions/submissions.component';
+import { SubmissionDetailComponent } from './admin/submissions/submission-detail/submission-detail.component';
 
 
 
@@ -60,6 +61,7 @@ import { SubmissionsComponent } from './admin/submissions/submissions.component'
     TemplatePreviewComponent,
     SearchTemplatePipe,
     SubmissionsComponent,
+    SubmissionDetailComponent,
     ],
   imports: [
     BrowserModule,

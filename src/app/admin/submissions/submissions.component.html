@@ -38,7 +38,12 @@
             <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                 <p>{{element.data.firstName}}</p>
 
-                <div class="row-buttons">
+                <div class="reply-buttons">
+                    <button mat-stroked-button color="warn" >Deschide</button>
+                    <button mat-stroked-button color="warn" >Răspunde</button>
+                </div>
+
+                <div class="crud-buttons">
                     <mat-select #select class="select-dropdown mat-stroked-button" [(value)]="element.state" (selectionChange)="changeSubmissionStatus(i, element.state)">
                         <mat-option value="solved">
                             Rezolvat
@@ -66,3 +71,5 @@
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
 </table>
+
+<router-outlet></router-outlet>

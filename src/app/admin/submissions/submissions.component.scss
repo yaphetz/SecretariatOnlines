@@ -39,8 +39,9 @@ tr.detail-row {
     overflow: hidden;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
-    .row-buttons {
+    .crud-buttons {
         display: flex;
         gap: 1rem;
         align-items: center;
@@ -60,6 +61,12 @@ tr.detail-row {
             min-width: unset!important;
         }
     }
+
+    .reply-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
   }
   
   .example-element-diagram {

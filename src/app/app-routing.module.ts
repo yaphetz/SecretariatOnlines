@@ -11,6 +11,7 @@ import { SignupComponent } from './authenticate/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DraftsComponent } from './drafts/drafts.component';
 import { SubmissionsComponent } from './admin/submissions/submissions.component';
+import { SubmissionDetailComponent } from './admin/submissions/submission-detail/submission-detail.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,14 @@ const routes: Routes = [
   {
     path: 'submissions',
     component: SubmissionsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children : [
+      {
+        path: 'no/:id',
+        component: SubmissionDetailComponent,
+        canActivate: [AuthGuard]
+      }
+    ]
   },
   {
     path: '',
