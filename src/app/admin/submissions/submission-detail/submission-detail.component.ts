@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-submission-detail',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubmissionDetailComponent implements OnInit {
 
+  @Input() submissionId: any;
+  
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnChanges() {
+    // if(this.submissionId.replies) {
+    //   console.log(this.submissionId.replies)
+    //   this.submissionId.replies = [];
+    // }
+
   }
 
 }
