@@ -42,13 +42,6 @@ const routes: Routes = [
     path: 'submissions',
     component: SubmissionsComponent,
     canActivate: [AuthGuard],
-    children : [
-      {
-        path: 'no/:id',
-        component: SubmissionDetailComponent,
-        canActivate: [AuthGuard]
-      }
-    ]
   },
   {
     path: '',

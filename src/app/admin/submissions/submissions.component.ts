@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { AngularFirestore, DocumentChange } from "@angular/fire/compat/firestore";
 import {
   animate,
@@ -25,28 +25,22 @@ import { take } from "rxjs/operators";
   ],
 })
 export class SubmissionsComponent implements OnInit {
+  @ViewChild('table') tableRef:ElementRef;
+
   constructor(private firestore: AngularFirestore) {}
 
   displayedColumns: string[] = ["name", "date", "time", "weight", "symbol"];
   expandedElement: any | null;
   submissions;
+  selectedSubmission;
 
   ngOnInit(): void {
     this.firestore
       .collection("submissions")
-      .valueChanges()
+      .valueChanges({idField: 'id'})
       .subscribe((data) => {
         this.submissions = data;
       });
-
-      // this.firestore.collection("submissions")
-      // .snapshotChanges().forEach(doc => {
-      //   doc.forEach( document=> {
-      //     console.log(document.payload.doc.data());
-      //     console.log(document.payload.doc.id);
-      //     this.submissions = 
-      //   })
-      // })
 
   }
 
@@ -69,6 +63,15 @@ export class SubmissionsComponent implements OnInit {
       submissionId = doc[index].payload.doc.id;
       this.firestore.collection("submissions").doc(submissionId).update({state: status})
     })
+  }
+
+  async emitSubmission(event) {
+    this.selectedSubmission = event;
+    // let plm : HTMLElement= document.querySelector('app-submissions');
+    // let height = plm.offsetHeight;
+    // plm.style.display = 'block';
+    // plm.style.transform = `translateY(-${height+20}px)`;
+    // console.log(plm);
   }
 
   submissionStatus(status) {

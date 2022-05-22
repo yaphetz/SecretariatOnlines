@@ -41,6 +41,7 @@ import { SearchTemplatePipe } from './pipes/search-template.pipe';
 import { Formio, FormioModule, FormioAppConfig } from 'angular-formio';
 import { SubmissionsComponent } from './admin/submissions/submissions.component';
 import { SubmissionDetailComponent } from './admin/submissions/submission-detail/submission-detail.component';
+import { ChatComponent } from './admin/submissions/submission-detail/chat/chat.component';
 
 
 
@@ -62,6 +63,7 @@ import { SubmissionDetailComponent } from './admin/submissions/submission-detail
     SearchTemplatePipe,
     SubmissionsComponent,
     SubmissionDetailComponent,
+    ChatComponent,
     ],
   imports: [
     BrowserModule,

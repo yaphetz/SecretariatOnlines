@@ -1,1 +1,13 @@
-<p>submission-detail works!</p>
+
+<div class="submission-details">
+    <div *ngIf="submissionId" class="content">
+        <div *ngFor="let item of submissionId.data | keyvalue">
+            {{item.key}}: {{item.value}}
+        </div>
+    </div>
+
+    <div *ngIf="submissionId" class="chat">
+        <app-chat [submissionId]="submissionId.id"></app-chat>
+
+    </div>
+</div>
