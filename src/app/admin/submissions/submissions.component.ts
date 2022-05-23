@@ -67,11 +67,6 @@ export class SubmissionsComponent implements OnInit {
 
   async emitSubmission(event) {
     this.selectedSubmission = event;
-    // let plm : HTMLElement= document.querySelector('app-submissions');
-    // let height = plm.offsetHeight;
-    // plm.style.display = 'block';
-    // plm.style.transform = `translateY(-${height+20}px)`;
-    // console.log(plm);
   }
 
   submissionStatus(status) {

@@ -1,0 +1,39 @@
+<div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+    [class.hovering]="isHovering">
+
+    <div class="file">
+        <input #inputFile type="file" style="display: none" (change)="startUpload($event.target.files)">
+        <button (click)="inputFile.click()" mat-stroked-button color="basic">
+            <mat-icon>file_upload</mat-icon>
+            Upload files
+        </button>
+
+        <mat-chip-list style="display: flex;">
+
+            <ng-container *ngFor="let file of uploadedFiles">
+                    <mat-chip >
+                        <mat-chip-avatar>
+                            <mat-icon>task</mat-icon>
+                        </mat-chip-avatar>
+                        {{file.name}}
+                    </mat-chip>
+            </ng-container>
+
+        </mat-chip-list>
+
+    </div>
+</div>
+
+<ng-container *ngIf="(snapshot | async) as snap">
+    <ng-container *ngIf="isActive(snap)">
+        <mat-progress-bar mode="determinate" *ngIf="percentage | async" [value]="percentage | async"></mat-progress-bar>
+
+        <div *ngIf="snap">
+            {{snap.bytesTransferred | formatFileSize }} of {{ snap.totalBytes | formatFileSize}}
+
+            <button (click)="isActive(snap)? task.pause() : task.resume()" mat-stroked-button> {{isActive(snap)? 'Pauză'
+                : 'Reia' }}</button>
+            <button (click)="task.cancel()" mat-stroked-button color="basic">Alege un fișier</button>
+        </div>
+    </ng-container>
+</ng-container>

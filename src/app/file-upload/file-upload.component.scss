@@ -1,0 +1,12 @@
+.dropzone {
+    height: 100%;
+
+    .file {
+        display: flex;
+        height: inherit;
+
+        button {
+            height: inherit;
+        }
+    }
+}

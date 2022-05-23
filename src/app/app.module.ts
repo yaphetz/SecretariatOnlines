@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatChipsModule } from '@angular/material/chips';
 import { GridsterModule } from 'angular-gridster2';
 import { NgChartsModule } from 'ng2-charts';
 
@@ -42,7 +45,9 @@ import { Formio, FormioModule, FormioAppConfig } from 'angular-formio';
 import { SubmissionsComponent } from './admin/submissions/submissions.component';
 import { SubmissionDetailComponent } from './admin/submissions/submission-detail/submission-detail.component';
 import { ChatComponent } from './admin/submissions/submission-detail/chat/chat.component';
-
+import { DropZoneDirective } from './directives/drop-zone.directive';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FormatFileSizePipe } from './pipes/bytes-convert.pipe';
 
 
 @NgModule({
@@ -64,6 +69,9 @@ import { ChatComponent } from './admin/submissions/submission-detail/chat/chat.c
     SubmissionsComponent,
     SubmissionDetailComponent,
     ChatComponent,
+    FileUploadComponent,
+    DropZoneDirective,
+    FormatFileSizePipe,
     ],
   imports: [
     BrowserModule,
@@ -80,6 +88,7 @@ import { ChatComponent } from './admin/submissions/submission-detail/chat/chat.c
       measurementId: "G-B5VFEH2MBW"
     }),
     AngularFirestoreModule,
+    AngularFireStorageModule,
     NgChartsModule,
     GridsterModule,
     HttpClientModule,
@@ -97,7 +106,9 @@ import { ChatComponent } from './admin/submissions/submission-detail/chat/chat.c
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatProgressBarModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
