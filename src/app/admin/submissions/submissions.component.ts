@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { AngularFirestore, DocumentChange } from "@angular/fire/compat/firestore";
+import {
+  AngularFirestore,
+  DocumentChange,
+} from "@angular/fire/compat/firestore";
 import {
   animate,
   state,
@@ -25,24 +28,26 @@ import { take } from "rxjs/operators";
   ],
 })
 export class SubmissionsComponent implements OnInit {
-  @ViewChild('table') tableRef:ElementRef;
+  @ViewChild("table") tableRef: ElementRef;
 
   constructor(private firestore: AngularFirestore) {}
 
   displayedColumns: string[] = ["name", "date", "time", "weight", "symbol"];
   expandedElement: any | null;
-  submissions;
+  submissions = [];
   selectedSubmission;
+
 
   ngOnInit(): void {
     this.firestore
       .collection("submissions")
-      .valueChanges({idField: 'id'})
+      .valueChanges({ idField: "id" })
       .subscribe((data) => {
         this.submissions = data;
+        console.log(data);
       });
-
   }
+
 
   async getTime(date) {
     let bufferDate = date.toDate();
@@ -51,18 +56,29 @@ export class SubmissionsComponent implements OnInit {
 
   async deleteSubmission(index) {
     let submissionId;
-    this.firestore.collection("submissions").snapshotChanges().pipe(take(1)).subscribe( doc=> {
-      submissionId = doc[index].payload.doc.id;
-      this.firestore.collection("submissions").doc(submissionId).delete();
-    })
+    this.firestore
+      .collection("submissions")
+      .snapshotChanges()
+      .pipe(take(1))
+      .subscribe((doc) => {
+        submissionId = doc[index].payload.doc.id;
+        this.firestore.collection("submissions").doc(submissionId).delete();
+      });
   }
 
   async changeSubmissionStatus(index, status) {
     let submissionId;
-    this.firestore.collection("submissions").snapshotChanges().pipe(take(1)).subscribe( doc=> {
-      submissionId = doc[index].payload.doc.id;
-      this.firestore.collection("submissions").doc(submissionId).update({state: status})
-    })
+    this.firestore
+      .collection("submissions")
+      .snapshotChanges()
+      .pipe(take(1))
+      .subscribe((doc) => {
+        submissionId = doc[index].payload.doc.id;
+        this.firestore
+          .collection("submissions")
+          .doc(submissionId)
+          .update({ state: status });
+      });
   }
 
   async emitSubmission(event) {
@@ -70,16 +86,25 @@ export class SubmissionsComponent implements OnInit {
   }
 
   submissionStatus(status) {
-    switch(status) {
-      case 'new':
-        return 'mail';
-      case 'pending':
-        return 'drafts';
-      case 'solved':
-        return 'check_circle';
+    switch (status) {
+      case "new":
+        return "mail";
+      case "pending":
+        return "drafts";
+      case "solved":
+        return "check_circle";
       default:
-        return 'undefined';
+        return "undefined";
     }
-    
   }
+
+  scrollTo(className: string):void {
+    setTimeout(() => {
+      const elementList = document.querySelectorAll(className);
+      console.log(elementList)
+      const element = elementList[0] as HTMLElement;
+      console.log(element)
+      element.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+ }
 }

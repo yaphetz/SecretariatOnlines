@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
@@ -15,11 +15,11 @@ export class FileUploadComponent implements OnInit {
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: Observable<string>;
-  uploadedFiles = [];
+  taskCanceled: boolean = false;
+  @Input() uploadedFiles = [];
   isHovering: boolean;
 
   @Output() uploadedFilesEmitter = new EventEmitter();
-
 
   constructor(private storage: AngularFireStorage, private userService: FirebaseService) { }
 
@@ -37,7 +37,7 @@ export class FileUploadComponent implements OnInit {
     this.task = this.storage.upload(path, file, {customMetadata});
     this.task.then( (file)=> {
       this.task.task.snapshot.ref.getDownloadURL().then( (url)=> {
-        console.log(url);
+        this.taskCanceled = false;
         this.uploadedFiles.push({name: file.metadata.customMetadata.name, downloadUrl: url})
         this.emitFiles();
       })
@@ -48,13 +48,23 @@ export class FileUploadComponent implements OnInit {
   }
 
   isActive(snapshot) {
-    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
+    return snapshot.state === 'running' || snapshot.bytesTransferred < snapshot.totalBytes
   }
+
 
   async emitFiles() {
     this.uploadedFilesEmitter.emit(this.uploadedFiles);
   }
+
+  cancelUpload() {
+    this.task.task.snapshot.state;
+  }
   
+  uploadStatus(snapshot) {
+    this.task.cancel();
+    console.log(    this.task.task.snapshot.state
+      )
+  }
 
   ngOnInit(): void {
   }

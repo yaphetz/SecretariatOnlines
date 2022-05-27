@@ -1,14 +1,15 @@
-<div class="imessage" >
+<div class="imessage" *ngIf="(replies | async)?.length" > 
     <p *ngFor="let reply of replies | async" [ngClass]="(reply.sender == 'student') ? 'from-me' : 'from-them' ">
-        {{reply.message}}
+      <span *ngIf="reply.sender !== 'student' " class="sender"> {{reply.sender}}</span>
+        <span style="text-transform: capitalize;">{{reply.message}}</span>
 
           <mat-chip-list *ngIf="reply.attachments" style="display: flex;">
-            <mat-chip *ngFor="let attachment of reply.attachments">
-              <a (click)="downloadFile(attachment.downloadUrl)">
+            <mat-chip *ngFor="let attachment of reply.attachments" class="attachment">
+              <a class="attachment-link" (click)="downloadFile(attachment.downloadUrl, attachment.name ? attachment.name : 'undefined')">
               <mat-chip-avatar>
                   <mat-icon>task</mat-icon>
               </mat-chip-avatar>
-              {{attachment.name}}
+              {{attachment.name ? attachment.name : 'undefined'}}
             </a>
             </mat-chip>
           </mat-chip-list>
@@ -32,5 +33,5 @@
 
 
   <div class="send-and-upload">
-    <app-file-upload (uploadedFilesEmitter)="receiveUploadedFiles($event)"></app-file-upload>
+    <app-file-upload [uploadedFiles]="uploadedFiles" (uploadedFilesEmitter)="receiveUploadedFiles($event)" style="display: block; width: 100%"></app-file-upload>
   </div>

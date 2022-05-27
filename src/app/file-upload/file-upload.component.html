@@ -11,12 +11,12 @@
         <mat-chip-list style="display: flex;">
 
             <ng-container *ngFor="let file of uploadedFiles">
-                    <mat-chip >
-                        <mat-chip-avatar>
-                            <mat-icon>task</mat-icon>
-                        </mat-chip-avatar>
-                        {{file.name}}
-                    </mat-chip>
+                <mat-chip>
+                    <mat-chip-avatar>
+                        <mat-icon>task</mat-icon>
+                    </mat-chip-avatar>
+                    {{file.name}}
+                </mat-chip>
             </ng-container>
 
         </mat-chip-list>
@@ -26,14 +26,15 @@
 
 <ng-container *ngIf="(snapshot | async) as snap">
     <ng-container *ngIf="isActive(snap)">
-        <mat-progress-bar mode="determinate" *ngIf="percentage | async" [value]="percentage | async"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" *ngIf="percentage | async" [value]="percentage | async" style="height: 1rem;">
+        </mat-progress-bar>
 
         <div *ngIf="snap">
             {{snap.bytesTransferred | formatFileSize }} of {{ snap.totalBytes | formatFileSize}}
-
-            <button (click)="isActive(snap)? task.pause() : task.resume()" mat-stroked-button> {{isActive(snap)? 'Pauză'
-                : 'Reia' }}</button>
-            <button (click)="task.cancel()" mat-stroked-button color="basic">Alege un fișier</button>
+            <button (click)="uploadStatus(snap)">plm</button>
+            <button (click)="uploadStatus(snap) == 'paused' ? task.resume() : task.pause()" mat-stroked-button> {{uploadStatus(snap) == 'paused'? 'Reia'
+                : 'Pauză' }}</button>
+            <button (click)="task.cancel()" mat-stroked-button color="basic">Anulează</button>
         </div>
     </ng-container>
 </ng-container>

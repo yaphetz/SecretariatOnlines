@@ -1,9 +1,16 @@
-
 <div class="submission-details">
     <div *ngIf="submissionId" class="content">
-        <div *ngFor="let item of submissionId.data | keyvalue">
-            {{item.key}}: {{item.value}}
-        </div>
+
+        <ng-container #submissionDetails *ngFor="let item of submissionId.data | keyvalue">
+            <div class="info" *ngIf="item.key!== 'submit'">
+                <div class="question">
+                    {{item.key}}
+                </div>
+                <div class="answer">{{item.value}}</div>
+            </div>
+        </ng-container>
+
+
     </div>
 
     <div *ngIf="submissionId" class="chat">

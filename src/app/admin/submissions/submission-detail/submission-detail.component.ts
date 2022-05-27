@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-submission-detail',
@@ -8,19 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SubmissionDetailComponent implements OnInit {
 
   @Input() submissionId: any;
-  
+  @Output() loadedEmitter = new EventEmitter();
+  @ViewChildren('submissionDetails') submissionDetails: QueryList<any>;
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
   ngOnChanges() {
-    // if(this.submissionId.replies) {
-    //   console.log(this.submissionId.replies)
-    //   this.submissionId.replies = [];
-    // }
-
+    this.loadedEmitter.next();
   }
+
 
 }

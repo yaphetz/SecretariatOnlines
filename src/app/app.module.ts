@@ -25,7 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { GridsterModule } from 'angular-gridster2';
-import { NgChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -48,6 +48,9 @@ import { ChatComponent } from './admin/submissions/submission-detail/chat/chat.c
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FormatFileSizePipe } from './pipes/bytes-convert.pipe';
+import { BarVerticalComponent } from './admin/submissions/graphs/bar-vertical/bar-vertical.component';
+import { PieComponent } from './admin/submissions/graphs/pie/pie.component';
+import { SubmissionsHistoryComponent } from './student/submissions-history/submissions-history.component';
 
 
 @NgModule({
@@ -72,6 +75,9 @@ import { FormatFileSizePipe } from './pipes/bytes-convert.pipe';
     FileUploadComponent,
     DropZoneDirective,
     FormatFileSizePipe,
+    BarVerticalComponent,
+    PieComponent,
+    SubmissionsHistoryComponent,
     ],
   imports: [
     BrowserModule,
@@ -89,7 +95,7 @@ import { FormatFileSizePipe } from './pipes/bytes-convert.pipe';
     }),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    NgChartsModule,
+    NgxChartsModule,
     GridsterModule,
     HttpClientModule,
     MatSidenavModule,
