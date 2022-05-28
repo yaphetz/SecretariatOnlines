@@ -17,6 +17,10 @@ export class PieComponent implements OnInit {
     .subscribe((data) => {
       this.pieChartData = this.getPieChartData(data);
     });
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      this.view = [400,300]
+    } 
   }
 
   // options
@@ -24,6 +28,7 @@ export class PieComponent implements OnInit {
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
+  view = [600, 400];
 
   colorScheme = {
     domain: ["#3cb3718c", "#B7A000", "#3F51B5"],

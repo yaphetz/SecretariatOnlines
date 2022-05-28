@@ -3,6 +3,10 @@
   display: flex;
   justify-content: space-evenly;
   padding: 2rem 0;
+
+  @media only screen and (max-width: 600px) {
+    flex-flow: column;
+  }
 }
 
 .back-to-top {
