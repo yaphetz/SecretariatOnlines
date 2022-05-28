@@ -24,6 +24,8 @@ export class FormBuilderComponent implements OnInit {
   templates: Observable<Template>;
   form: any;
   templateName: string;
+  currentTemplate: string;
+
   constructor( private firestore : AngularFirestore ) { 
     console.log(this.form)
   }
@@ -33,14 +35,18 @@ export class FormBuilderComponent implements OnInit {
   }
   
   onChange(event){
-    console.log(event.form)
-    this.updateContent(event.form, this.templateName)
+    this.currentTemplate = event.form;
   }
 
   
   updateContent(template, templateName) {
     this.templatesCollection = this.firestore.doc(`templates/${templateName}`)
     this.templatesCollection.set({template: JSON.stringify(template), active: true, id: templateName},{merge: true})
+  }
+
+  publishTemplate(templateName) {
+    this.templatesCollection = this.firestore.doc(`templates/${templateName}`)
+    this.templatesCollection.set({template: JSON.stringify(this.currentTemplate), active: true, id: templateName},{merge: true})
   }
 
   builderConfig :any;

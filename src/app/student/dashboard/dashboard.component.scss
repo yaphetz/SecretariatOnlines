@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
+  gap: 2rem;
+
+  @media only screen and (max-width: 600px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .back-to-top {
@@ -126,5 +132,11 @@ tr.element-row:not(.expanded-row):active {
 ::ng-deep {
   .submission-details {
     width: 100%!important;
+  }
+
+  app-new-submissions-card {
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
   }
 }

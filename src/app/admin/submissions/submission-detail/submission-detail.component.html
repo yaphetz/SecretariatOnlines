@@ -6,8 +6,12 @@
                 <div class="question">
                     {{item.key}}
                 </div>
-                <div class="answer">{{item.value}}</div>
+                <div class="answer" *ngIf="item.key != 'signature'">{{item.value}}</div>
+
             </div>
+        </ng-container>
+        <ng-container *ngFor="let item of submissionId.data | keyvalue">
+            <img *ngIf="item.key == 'signature'" [src]="item.value">
         </ng-container>
 
 
@@ -18,3 +22,5 @@
 
     </div>
 </div>
+
+<ng-template><img [src]="item.value"></ng-template>

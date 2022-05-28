@@ -29,6 +29,16 @@ export class SideMenuComponent implements OnInit {
         this.setPermissions()
       }
     });
+
+    this.authService.firebaseAuth.user.subscribe( user=> {
+      if(user)
+      this.toolbarToggle = true;
+    })
+
+  }
+
+  toggleToolbar() {
+    this.toolbarToggle = !this.toolbarToggle;
   }
 
   logout() {

@@ -29,10 +29,11 @@ export class TemplatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.templatesCollection = this.firestore.collection('templates');
-    this.templates = this.templatesCollection.valueChanges();
+    this.templates = this.templatesCollection.valueChanges({ idField: "uid" });
     this.templates.subscribe( (data)=> {
       this.templates2 = data;
     })
+
   }
 
   deleteTemplate(document) {

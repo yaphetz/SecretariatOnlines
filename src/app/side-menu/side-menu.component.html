@@ -1,5 +1,6 @@
 <div class="navigation">
     <mat-toolbar color="primary" class="">
+        <mat-icon (click)="toggleToolbar()" >menu</mat-icon>
 
         <div *ngIf="(authService.firebaseAuth.user | async)" class="user-panel">
             <a mat-flat-button (click)="logout()">Deconectare</a>
@@ -27,7 +28,7 @@
     </mat-toolbar>
 
     <mat-drawer-container class="example-container" autosize>
-        <mat-drawer #drawer [opened]="(authService.firebaseAuth.user | async)" class="example-sidenav" mode="side">
+        <mat-drawer #drawer [opened]="toolbarToggle" class="example-sidenav" mode="side">
 
             <div class="menu-container">
                 <mat-nav-list>
