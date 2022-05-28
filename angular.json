@@ -46,7 +46,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -68,7 +67,11 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "buildOptimizer": false,
-              "sourceMap": false,
+              "sourceMap": {
+                "scripts": true,
+                "vendor": true,
+                "styles": true
+              },
               "optimization": false,
               "namedChunks": true
             }

@@ -29,7 +29,6 @@
     "@swimlane/ngx-charts": "^20.1.0",
     "@types/file-saver": "^2.0.5",
     "angular-formio": "^4.11.5",
-    "angular-gridster2": "^13.2.0",
     "angular2gridster": "^13.0.0",
     "animate-css-grid": "^1.4.3",
     "chart.js": "^3.7.1",

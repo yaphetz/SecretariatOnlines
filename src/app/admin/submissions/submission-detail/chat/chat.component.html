@@ -1,9 +1,12 @@
 <div class="imessage" *ngIf="(replies | async)?.length" > 
     <p *ngFor="let reply of replies | async" [ngClass]="(reply.sender == 'student') ? 'from-me' : 'from-them' ">
-      <span *ngIf="reply.sender !== 'student' " class="sender"> {{reply.sender}}</span>
+      <span class="sender" [class.student]="reply.sender == 'student' "> {{reply.sender}}</span>
+      <span class="message-box">
         <span style="text-transform: capitalize;">{{reply.message}}</span>
+        <span class="sent_at"> {{reply.timestamp.toDate().toLocaleTimeString()}}</span>
+      </span>
 
-          <mat-chip-list *ngIf="reply.attachments" style="display: flex;">
+          <mat-chip-list *ngIf="reply.attachments" style="display: flex; padding-top: 4px;">
             <mat-chip *ngFor="let attachment of reply.attachments" class="attachment">
               <a class="attachment-link" (click)="downloadFile(attachment.downloadUrl, attachment.name ? attachment.name : 'undefined')">
               <mat-chip-avatar>
@@ -13,6 +16,7 @@
             </a>
             </mat-chip>
           </mat-chip-list>
+
 
 
 

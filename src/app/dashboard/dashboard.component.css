@@ -1,9 +1,0 @@
-.cards-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 2rem;
-  padding: 2rem;
-}
-/*# sourceMappingURL=dashboard.component.css.map */

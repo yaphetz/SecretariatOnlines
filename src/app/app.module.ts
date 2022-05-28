@@ -24,14 +24,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
-import { GridsterModule } from 'angular-gridster2';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { SideMenuComponent } from './side-menu/side-menu.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { CardComponent } from './dashboard/card/card.component';
-import { FormComponent } from './dashboard/form/form.component';
-import { WarningDialogComponent } from './dashboard/form/warning-dialog/warning-dialog.component';
 import { DraftsComponent } from './drafts/drafts.component';
 import { FirebaseService } from './services/firebase.service';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
@@ -51,6 +46,8 @@ import { FormatFileSizePipe } from './pipes/bytes-convert.pipe';
 import { BarVerticalComponent } from './admin/submissions/graphs/bar-vertical/bar-vertical.component';
 import { PieComponent } from './admin/submissions/graphs/pie/pie.component';
 import { SubmissionsHistoryComponent } from './student/submissions-history/submissions-history.component';
+import { DashboardComponent } from './student/dashboard/dashboard.component';
+import { NewSubmissionsCardComponent } from './student/dashboard/cards/new-submissions-card/new-submissions-card.component';
 
 
 @NgModule({
@@ -58,9 +55,6 @@ import { SubmissionsHistoryComponent } from './student/submissions-history/submi
     AppComponent,
     SideMenuComponent,
     DashboardComponent,
-    CardComponent,
-    FormComponent,
-    WarningDialogComponent,
     DraftsComponent,
     AuthenticateComponent,
     SignupComponent,
@@ -78,6 +72,7 @@ import { SubmissionsHistoryComponent } from './student/submissions-history/submi
     BarVerticalComponent,
     PieComponent,
     SubmissionsHistoryComponent,
+    NewSubmissionsCardComponent,
     ],
   imports: [
     BrowserModule,
@@ -96,7 +91,6 @@ import { SubmissionsHistoryComponent } from './student/submissions-history/submi
     AngularFirestoreModule,
     AngularFireStorageModule,
     NgxChartsModule,
-    GridsterModule,
     HttpClientModule,
     MatSidenavModule,
     MatToolbarModule,

@@ -88,8 +88,11 @@ export class FirebaseService {
     return false;
   }
 
-  isStudent(user: User): boolean {
+  isStudent(user: User, strict = false): boolean {
     const allowed = ["student"];
+    if(strict)
+    return (this.checkAuthorization(user, allowed) && !this.checkAuthorization(user, ["profesor","secretariat"]));
+    else
     return this.checkAuthorization(user, allowed);
   }
 

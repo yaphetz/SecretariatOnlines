@@ -39,12 +39,34 @@
   padding: 0.5rem 1.5rem;
 
   .sender {
-	display: block;
+	  display: block;
     font-size: 1rem;
     text-transform: capitalize;
     font-weight: 600;
     color: #3F51B5;
   }
+
+  .student {
+    margin-left: auto;
+    display: block;
+    width: fit-content;
+    color: #E5E5EA;
+  }
+
+  .message-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .sent_at {
+      margin-left: 2rem;
+      margin-top: auto;
+      font-size: 1rem;
+      font-family: 'Open Sans';
+    }
+  }
+
+
   
   p {
     border-radius: 1.15rem;

@@ -61,9 +61,7 @@ export class FileUploadComponent implements OnInit {
   }
   
   uploadStatus(snapshot) {
-    this.task.cancel();
-    console.log(    this.task.task.snapshot.state
-      )
+    return snapshot.state;
   }
 
   ngOnInit(): void {

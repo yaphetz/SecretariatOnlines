@@ -8,10 +8,11 @@ import { AdminGuard } from './core/admin.guard';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { SigninComponent } from './authenticate/signin/signin.component';
 import { SignupComponent } from './authenticate/signup/signup.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { DraftsComponent } from './drafts/drafts.component';
 import { SubmissionsComponent } from './admin/submissions/submissions.component';
 import { SubmissionDetailComponent } from './admin/submissions/submission-detail/submission-detail.component';
+import { SubmissionsHistoryComponent } from './student/submissions-history/submissions-history.component';
+import { DashboardComponent } from './student/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: 'acasa',
     component: DashboardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'istoric',
+    component: SubmissionsHistoryComponent,
   },
   {
     path: 'form-builder',

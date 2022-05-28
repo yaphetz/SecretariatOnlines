@@ -4,6 +4,7 @@ import { take} from 'rxjs/operators';
 import {saveAs} from 'file-saver';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 
 @Component({
@@ -17,12 +18,14 @@ export class ChatComponent implements OnInit {
   
   replies = from([]);
   uploadedFiles = [];
+  role: string; 
 
   messageContent: string = '';
-  constructor(private firestore: AngularFirestore, private http : HttpClient) { }
+  constructor(private firestore: AngularFirestore, private http : HttpClient, private authService: FirebaseService) { }
 
   ngOnInit(): void {
-
+    console.log(this.authService.isStudent(this.authService.user))
+    this.role = this.authService.isStudent(this.authService.user) ? 'student' : 'admin';
   }
 
   ngOnChanges(changes) {
@@ -33,7 +36,7 @@ export class ChatComponent implements OnInit {
 
   sendMessage() {
     if(this.messageContent || this.uploadedFiles.length != 0)
-    this.firestore.collection('submissions').doc(this.submissionId).collection('replies').add({sender: 'admin', read: false, message: this.messageContent, attachments: this.uploadedFiles, timestamp: new Date()})
+    this.firestore.collection('submissions').doc(this.submissionId).collection('replies').add({sender: this.role, read: false, message: this.messageContent, attachments: this.uploadedFiles, timestamp: new Date()})
     this.messageContent = null;
     this.uploadedFiles = [];
   }

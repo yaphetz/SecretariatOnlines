@@ -30,6 +30,7 @@ export class TemplatePreviewComponent implements OnInit {
     submission.user = this.authService.user;
     submission.state = 'new';
     submission.metadata.time = new Date();
+    submission.template = {name: 'nume', uid: 'uid'};
     this.firestore.collection('submissions').add(submission)
   }
 

@@ -7,7 +7,7 @@
                 <button mat-icon-button >
                     <mat-icon [height]="5">account_circle</mat-icon>
                 </button>
-                <p class="display-name">{{displayName}}</p>
+                <p *ngIf="displayName" class="display-name">{{displayName}}</p>
             </div>
 
 
@@ -34,7 +34,10 @@
 
                     <div *ngFor="let menuItem of menuItems" class="menu-item-container" [class]="menuItem.class">
                         <a mat-list-item [routerLink]="menuItem.route" routerLinkActive="active"
-                            *ngIf="menuItem.hasAcces">{{menuItem.name}}</a>
+                            *ngIf="menuItem.hasAcces"> 
+                            <mat-icon class="menu-icon" *ngIf="menuItem.icon">{{menuItem.icon}}</mat-icon>
+
+                            <span>{{menuItem.name}}</span></a>
                     </div>
 
                 </mat-nav-list>

@@ -15,7 +15,7 @@ export class SideMenuComponent implements OnInit {
   displayName: string;
   permission = this.adminGuard.menuAuthenticated("student");
   isAdmin: boolean = false;
-  isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   user: User;
 
   constructor(
@@ -24,8 +24,10 @@ export class SideMenuComponent implements OnInit {
   ) {
     this.authService.user$.subscribe((user) => {
       this.user = user;
-      this.displayName = user.displayName;
-      this.setPermissions()
+      if(user){
+        this.displayName = user.displayName;
+        this.setPermissions()
+      }
     });
   }
 
@@ -40,36 +42,43 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
     this.menuItems = [
       {
-        name: "Cerere nouă",
+        name: "Acasă",
         route: "acasa",
-        role: ["student", "profesor", "secretariat"],
+        role: ["student"],
+        icon: "home"
       },
       {
-        name: "Schițe",
-        route: "drafts",
-        role: ["student", "profesor", "secretariat"],
+        name: "Cerere nouă",
+        route: "templates",
+        role: ["student"],
+        icon: ["note_alt"]
       },
       {
         name: "Istoric cereri",
-        role: ["student", "profesor", "secretariat"],
+        route: "istoric",
+        role: ["student"],
+        icon: ["reorder"]
       },
       {
-        name: "Form builder",
+        name: "Crează șablon",
         route: "form-builder",
         role: ["secretariat"],
-        class: "restricted"
+        class: "restricted",
+        icon: "admin_panel_settings"
       },
       {
         name: "Șabloane",
         route: "templates",
         role: ["secretariat"],
-        class: "restricted"
+        class: "restricted",
+        icon: "admin_panel_settings"
       },
       {
         name: "Depuneri",
         route: "submissions",
         role: ["secretariat"],
-        class: "restricted"
+        class: "restricted",
+        icon: "admin_panel_settings"
       },
     ];
 
@@ -79,5 +88,6 @@ export class SideMenuComponent implements OnInit {
     for (let menuItem of this.menuItems) {
       menuItem.hasAcces = this.hasAcces(menuItem.role)
     }
+    console.log(this.menuItems)
   }
 }

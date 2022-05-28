@@ -27,9 +27,27 @@
     justify-content: space-between;
 
     .menu-item-container {
-      &.restricted {
-        background-color: #a8dab5;
-        margin: 1px 0;
+      // &.restricted {
+      //   background-color: #a8dab5;
+      //   margin: 1px 0;
+      // }
+
+      ::ng-deep .mat-list-item-content {
+        gap: 1rem;
+
+        .menu-icon {
+          font-size: 2rem;
+          color: #3f51b5;
+          height: auto;
+          width: auto;
+        }
+      }
+
+      .active {
+        background-color: #80808054 !important;
+        font-weight: 500;
+        transition: all 0.4s;
+        font-size: 120%;
       }
     }
   }

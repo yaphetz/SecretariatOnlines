@@ -1,0 +1,123 @@
+
+.charts-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem 0;
+  }
+  
+  .back-to-top {
+    display: flex;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    border-radius: 0.5rem;
+    background-color: #6473c3a1;
+    aspect-ratio: 4/3;
+  }
+  
+  table {
+      width: 90%;
+      margin: 1rem auto;
+  }
+  
+  .status-icon {
+      background: unset;
+  
+      &.new {
+          color: #b7a000;
+      }
+  
+      &.pending {
+          color: #b7a000;
+      }
+  
+      &.solved {
+          color: mediumseagreen;
+      }
+  }
+  
+  tr.detail-row {
+      height: 0;
+    }
+    
+    tr.element-row:not(.expanded-row):hover {
+      background: whitesmoke;
+    }
+    
+    tr.element-row:not(.expanded-row):active {
+      background: #efefef;
+    }
+    
+    .element-row td {
+      border-bottom-width: 0;
+    }
+    
+    .example-element-detail {
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .crud-buttons {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          padding: 0.5rem 0;
+          margin-left: auto;
+  
+          ::ng-deep mat-select {
+              padding: 0!important;
+              .mat-select-trigger {
+                  padding: 0 15px;
+                  height: 100%;
+              }
+  
+          }
+  
+          button {
+              min-width: unset!important;
+          }
+      }
+  
+      .reply-buttons {
+        display: flex;
+        gap: 1rem;
+      }
+  
+    }
+    
+    .example-element-diagram {
+      min-width: 80px;
+      border: 2px solid black;
+      padding: 8px;
+      font-weight: lighter;
+      margin: 8px 0;
+      height: 104px;
+    }
+    
+    .example-element-symbol {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: normal;
+    }
+    
+    .example-element-description {
+      padding: 16px;
+    }
+    
+    .example-element-description-attribution {
+      opacity: 0.5;
+    }
+  
+    .select-dropdown {
+      box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%);
+      border: 1px solid currentColor;
+      border-color: rgba(0,0,0,.12);
+      padding: 0 15px;
+      line-height: 34px;
+      border-radius: 4px;
+    }
+  
+    ::ng-deep app-submissions {
+      transition: transform 1s;
+    }

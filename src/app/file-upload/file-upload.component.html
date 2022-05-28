@@ -31,7 +31,6 @@
 
         <div *ngIf="snap">
             {{snap.bytesTransferred | formatFileSize }} of {{ snap.totalBytes | formatFileSize}}
-            <button (click)="uploadStatus(snap)">plm</button>
             <button (click)="uploadStatus(snap) == 'paused' ? task.resume() : task.pause()" mat-stroked-button> {{uploadStatus(snap) == 'paused'? 'Reia'
                 : 'Pauză' }}</button>
             <button (click)="task.cancel()" mat-stroked-button color="basic">Anulează</button>

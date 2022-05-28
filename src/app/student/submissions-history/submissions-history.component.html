@@ -1,1 +1,58 @@
-<p>submissions-history works!</p>
+  
+  <table #table mat-table [dataSource]="userSubmissions" multiTemplateDataRows class="mat-elevation-z8" id="submissions-table">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="time">
+          <th mat-header-cell *matHeaderCellDef> Ora depunerii </th>
+          <td mat-cell *matCellDef="let element"> {{element.metadata.time.toDate().toLocaleTimeString()}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Ziua depunerii </th>
+          <td mat-cell *matCellDef="let element"> {{element.metadata.time.toDate().toLocaleDateString()}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nume cerere </th>
+          <td mat-cell *matCellDef="let element" style="font-weight: 500;"> {{element.user.displayName}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element">
+              <mat-icon aria-hidden="false" class="status-icon" [class]="element.state">
+                  {{submissionStatus(element.state)}}</mat-icon>
+          </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element; let i = dataIndex" [attr.colspan]="5">
+              <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+  
+  
+                  <div class="crud-buttons">
+                      <button mat-stroked-button color="primary"
+                      (click)="changeSubmissionStatus(i, 'new')">Redeschide</button>
+                  </div>
+  
+              </div>
+          </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row"
+          [class.expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+  
+  </table>
+  
+  <app-submission-detail #details (loadedEmitter)="scrollTo('app-submission-detail')" [submissionId]="selectedSubmission"></app-submission-detail>
+  
+  <div class="back-to-top">
+      <button (click)="scrollTo('table')" mat-button color="primary">
+          <mat-icon style="transform: scale(1.5);">expand_less</mat-icon>
+      </button>
+  </div>
