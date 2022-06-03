@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ViewChild } from "@angular/core";
 import { Router, CanActivate } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Observable, from, of } from "rxjs";
@@ -8,6 +8,7 @@ import {
   AngularFirestoreDocument,
 } from "@angular/fire/compat/firestore";
 import { User } from "../models/user.model";
+import { SideMenuComponent } from "../side-menu/side-menu.component";
 
 @Injectable({
   providedIn: "root",
@@ -16,6 +17,7 @@ export class FirebaseService {
   isLoggedIn: boolean = false;
   user$: Observable<User>;
   user: any;
+  menuStatus:boolean = false;
 
   constructor(
     public firebaseAuth: AngularFireAuth,
@@ -37,7 +39,9 @@ export class FirebaseService {
       .then((res) => {
         this.isLoggedIn = true;
         localStorage.setItem("user", JSON.stringify(res.user));
+        this.menuStatus = true;
       });
+      this.getUserData()
   }
 
   async signup(email: string, password: string) {
@@ -51,8 +55,8 @@ export class FirebaseService {
   }
 
   async logout() {
-    console.log("Log out");
     await this.firebaseAuth.signOut();
+    this.menuStatus = false;
     this.isLoggedIn = false;
     localStorage.removeItem("user");
     this.router.navigate(["login"]);

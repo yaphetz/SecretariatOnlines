@@ -24,6 +24,7 @@ const routes: Routes = [
   {
     path: 'istoric',
     component: SubmissionsHistoryComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'form-builder',
@@ -33,6 +34,7 @@ const routes: Routes = [
   {
     path: 'templates',
     component: TemplatesComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'templates/:id',

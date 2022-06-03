@@ -38,7 +38,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   toggleToolbar() {
-    this.toolbarToggle = !this.toolbarToggle;
+    this.authService.menuStatus = !this.authService.menuStatus;
   }
 
   logout() {
@@ -98,6 +98,5 @@ export class SideMenuComponent implements OnInit {
     for (let menuItem of this.menuItems) {
       menuItem.hasAcces = this.hasAcces(menuItem.role)
     }
-    console.log(this.menuItems)
   }
 }

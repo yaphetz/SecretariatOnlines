@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { Router } from "@angular/router";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-signin",
@@ -16,7 +17,14 @@ export class SigninComponent implements OnInit {
     this.signinFetching = true;
     await this.authService.signin(email, password).then(() => {
       if (this.authService.isLoggedIn == true) {
-        this.router.navigate(["acasa"]);
+        console.log('student?', this.authService.isStudent(this.authService.user))
+        this.authService.user$.pipe(take(1)).subscribe(res=> {
+          if(this.authService.isStudent(res, true) == true)
+          this.router.navigate(["acasa"]);
+          else
+          this.router.navigate(["submissions"]);
+        })
+
         this.signinFetching = false;
       }
     });
