@@ -12,9 +12,11 @@ export class SigninComponent implements OnInit {
   constructor(private authService: FirebaseService, private router: Router) {}
   @Output() isLoggedInEventEmitter = new EventEmitter();
   signinFetching: boolean = false;
+  error: string = null;
 
   async signin(email: string, password: string) {
     this.signinFetching = true;
+    this.error = null;
     await this.authService.signin(email, password).then(() => {
       if (this.authService.isLoggedIn == true) {
         console.log('student?', this.authService.isStudent(this.authService.user))
@@ -27,6 +29,11 @@ export class SigninComponent implements OnInit {
 
         this.signinFetching = false;
       }
+    })
+    .catch(error=> {
+      console.log(error)
+      this.signinFetching = false;
+      this.error = 'Mailul sau parola nu este corectă';
     });
   }
 
