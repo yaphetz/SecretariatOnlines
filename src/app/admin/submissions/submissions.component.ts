@@ -44,7 +44,6 @@ export class SubmissionsComponent implements OnInit {
       .valueChanges({ idField: "id" })
       .subscribe((data) => {
         this.submissions = data;
-        console.log(data);
       });
   }
 
@@ -101,9 +100,7 @@ export class SubmissionsComponent implements OnInit {
   scrollTo(className: string):void {
     setTimeout(() => {
       const elementList = document.querySelectorAll(className);
-      console.log(elementList)
       const element = elementList[0] as HTMLElement;
-      console.log(element)
       element.scrollIntoView({ behavior: 'smooth' });
     }, 100);
  }

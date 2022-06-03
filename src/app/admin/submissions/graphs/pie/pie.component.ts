@@ -37,7 +37,6 @@ export class PieComponent implements OnInit {
   pieChartData = [];
 
   getPieChartData(submissions) {
-    console.log(submissions);
     let count = { closed: 0, pending: 0, new: 0 };
     submissions.forEach((submission) => {
       switch (submission.state) {

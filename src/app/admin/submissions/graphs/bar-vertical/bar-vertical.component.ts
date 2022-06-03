@@ -54,6 +54,5 @@ export class BarVerticalComponent implements OnInit {
   };
 
   onSelect(event) {
-    console.log(event);
   }
 }
