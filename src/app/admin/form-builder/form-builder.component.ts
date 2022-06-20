@@ -4,6 +4,9 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from "rxjs";
 import { builderConfig } from "./form-builder.config";
 import { FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 interface Template {
   id: string;
@@ -24,8 +27,12 @@ export class FormBuilderComponent implements OnInit {
   templateName: string;
   currentTemplate: string;
 
-  constructor(private firestore: AngularFirestore) {
-    console.log(this.form);
+  constructor(private firestore: AngularFirestore, private router: Router, private notificator: MatSnackBar) {
+    let routerData = this.router.getCurrentNavigation().extras.state;
+    if (routerData) {
+      this.defaultForm = JSON.parse(routerData.template)
+      this.templateName = routerData.id;
+    } 
   }
 
   ngOnInit(): void {
@@ -34,17 +41,14 @@ export class FormBuilderComponent implements OnInit {
 
   onChange(event) {
     this.currentTemplate = event.form;
-    console.log(event);
-  }
-
-  updateContent(template, templateName) {
-    this.templatesCollection = this.firestore.doc(`templates/${templateName}`);
-    this.templatesCollection.set({ template: JSON.stringify(template), active: true, id: templateName }, { merge: true });
   }
 
   publishTemplate(templateName) {
     this.templatesCollection = this.firestore.doc(`templates/${templateName}`);
-    this.templatesCollection.set({ template: JSON.stringify(this.currentTemplate), active: true, id: templateName }, { merge: true });
+    this.templatesCollection.set(
+      { template: JSON.stringify(this.currentTemplate), active: true, id: templateName }, { merge: true }
+      );
+      this.notificator.open('Formularul este publicat', 'Închide')
   }
 
   builderConfig: any;

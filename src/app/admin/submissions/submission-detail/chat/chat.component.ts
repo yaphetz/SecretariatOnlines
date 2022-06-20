@@ -24,14 +24,12 @@ export class ChatComponent implements OnInit {
   constructor(private firestore: AngularFirestore, private http : HttpClient, private authService: FirebaseService) { }
 
   ngOnInit(): void {
-    console.log(this.authService.isStudent(this.authService.user))
     this.role = this.authService.isStudent(this.authService.user) ? 'student' : 'admin';
   }
 
   ngOnChanges(changes) {
     if(changes.submissionId)
     this.replies = this.firestore.collection('submissions').doc(this.submissionId).collection('replies', ref=> ref.orderBy('timestamp')).valueChanges();
-
   }
 
   sendMessage() {

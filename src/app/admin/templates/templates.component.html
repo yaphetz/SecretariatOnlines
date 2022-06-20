@@ -12,29 +12,29 @@
 
     <div class="templates-container">
         <ng-container *ngFor="let template of templates2 | searchTemplate: searchValue">
-            <mat-card [class]=" template.active ? 'enabled' : 'disabled' " class="animate__animated animate__fadeIn">
+            <mat-card *ngIf="(isAdmin) || (!isAdmin && template.active)" [class]=" template.active ? 'enabled' : 'disabled' " class="animate__animated animate__fadeIn">
 
                 <div class="title-container">
                     <mat-card-title style="line-height: 1.2">Titlu: {{template.id}}</mat-card-title>
-                    <button (click)="deleteTemplate(template.id)" mat-button color="warn" [disabled]="template.active ? 'true' : 'false'">
+                    <button *ngIf="isAdmin" (click)="deleteTemplate(template.id)" mat-button color="warn" [disabled]="template.active ? 'true' : 'false'">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
 
                 <div class="options-container">
-                    <button mat-flat-button>
+                    <button *ngIf="isAdmin" mat-flat-button (click)="editTemplate(template)">
                         <mat-icon>edit</mat-icon>
                         Edit
                     </button>
 
-                    <button (click)="toggleTemplateStatus(template)" mat-button [color]="template.active ? 'warn' : 'primary' ">
+                    <button *ngIf="isAdmin" (click)="toggleTemplateStatus(template)" mat-button [color]="template.active ? 'warn' : 'primary' ">
                         <mat-icon> {{ template.active? 'toggle_on' : 'toggle_off'}}</mat-icon>
                         {{ template.active? 'Enabled' : 'Disabled'}}
                     </button>
 
                     <button mat-button (click)="openTemplatePreview(template)">
                         <mat-icon>remove_red_eye</mat-icon>
-                        Preview
+                        {{isAdmin ? 'Preview' : 'Completează'}}
                     </button>
                 </div>
 

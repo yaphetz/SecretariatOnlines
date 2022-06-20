@@ -31,3 +31,12 @@
         height: fit-content;
     }
 }
+
+::ng-deep .form-group.has-feedback.formio-component.formio-component-button.formio-component-submit.form-group {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    button {
+        min-width: 20%;
+    }
+}

@@ -31,6 +31,11 @@ export class FirebaseService {
       })
     );
     this.getUserData()
+    this.user$.pipe(take(1)).subscribe( user=> {
+      if(user) {
+        this.menuStatus = true;
+      }
+    })
   }
 
   async signin(email: string, password: string) {

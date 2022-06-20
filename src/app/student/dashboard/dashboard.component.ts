@@ -29,10 +29,6 @@ export class DashboardComponent implements OnInit {
     this.submissions$ = this.firestore.collection('submissions', (ref)=> ref.where("user.uid", "==", 'kILNSeCAeZXCcTkkErwy6Ug52o82').where("state", "!=", "solved")).valueChanges({ idField: "id" })
   }
 
-  getSubmissions() {
-    this.firestore.collection('submissions', (ref)=> ref.where("user.uid", "==", 'kILNSeCAeZXCcTkkErwy6Ug52o82')).valueChanges().subscribe( plm=> {console.log(plm)});
-  }
-
   displayedColumns: string[] = ["title","date", "time", "symbol"];
   expandedElement: any | null;
   submissions = [];

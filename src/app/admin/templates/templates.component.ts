@@ -7,6 +7,7 @@ import {
 import { Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from "rxjs/internal/Observable";
+import { FirebaseService } from "src/app/services/firebase.service";
 
 
 interface Template {
@@ -20,12 +21,13 @@ interface Template {
   styleUrls: ["./templates.component.scss"],
 })
 export class TemplatesComponent implements OnInit {
-  constructor(private router : Router, private firestore: AngularFirestore, private popup: MatDialog) {}
+  constructor(private router : Router, private firestore: AngularFirestore, private popup: MatDialog, private authService: FirebaseService) {}
 
   templatesCollection: AngularFirestoreCollection<Template>;
   templates: Observable<Template[]>;
   templates2 = [];
   searchValue: string;
+  isAdmin : boolean = false;
 
   ngOnInit(): void {
     this.templatesCollection = this.firestore.collection('templates');
@@ -33,6 +35,8 @@ export class TemplatesComponent implements OnInit {
     this.templates.subscribe( (data)=> {
       this.templates2 = data;
     })
+
+    this.isAdmin = this.authService.isAdmin(this.authService.user);
 
   }
 
@@ -52,6 +56,10 @@ export class TemplatesComponent implements OnInit {
 
   updateSearch(term) {
     this.searchValue = term;
+  }
+
+  editTemplate(template) {
+    this.router.navigate(['form-builder'], {state: template})
   }
 
   openTemplatePreview(template) {

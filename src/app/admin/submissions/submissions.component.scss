@@ -19,9 +19,13 @@
   aspect-ratio: 4/3;
 }
 
-table {
+.table-container {
     width: 90%;
     margin: 1rem auto;
+
+    table {
+      width: 100%;
+    }
 }
 
 .status-icon {

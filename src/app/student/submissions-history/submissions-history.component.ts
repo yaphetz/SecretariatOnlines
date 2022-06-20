@@ -58,7 +58,8 @@ export class SubmissionsHistoryComponent implements OnInit {
   getUserSubmissions() {
     this.userSubmissions = this.firestore
       .collection("submissions", (ref) =>
-        ref.where("user.uid", "==", this.userUID).where("state", "==", "solved")
+        ref.where("user.uid", "==", this.userUID)
+        .where("state", "==", "solved")
       )
       .valueChanges();
   }
