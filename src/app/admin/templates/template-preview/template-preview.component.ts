@@ -25,7 +25,6 @@ export class TemplatePreviewComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(submission) {
-    console.log(this.template);
     submission.user = this.authService.user;
     submission.state = "new";
     submission.metadata.time = new Date();
