@@ -7,6 +7,11 @@
   @media only screen and (max-width: 600px) {
     flex-flow: column;
   }
+
+  @media only screen and (max-width: 1000px) {
+    flex-flow: column;
+    align-items: center;
+  }
 }
 
 .back-to-top {

@@ -15,7 +15,7 @@ export class BarVerticalComponent implements OnInit {
   ngOnInit(): void {
     this.getLength();
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      this.view = [400,300]
+      this.view = [500,300]
     } 
   }
 

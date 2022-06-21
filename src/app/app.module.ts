@@ -51,6 +51,7 @@ import { PieComponent } from "./admin/submissions/graphs/pie/pie.component";
 import { SubmissionsHistoryComponent } from "./student/submissions-history/submissions-history.component";
 import { DashboardComponent } from "./student/dashboard/dashboard.component";
 import { NewSubmissionsCardComponent } from "./student/dashboard/cards/new-submissions-card/new-submissions-card.component";
+import { NewMessagesCardComponent } from "./student/dashboard/cards/messages-card/new-messages-card.component";
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { NewSubmissionsCardComponent } from "./student/dashboard/cards/new-submi
     PieComponent,
     SubmissionsHistoryComponent,
     NewSubmissionsCardComponent,
+    NewMessagesCardComponent
   ],
   imports: [
     BrowserModule,
